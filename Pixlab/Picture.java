@@ -273,72 +273,7 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    Picture temple = new Picture("temple.jpg");
-    Picture beach = new Picture("beach.jpg");
-    Picture seagull = new Picture("seagull.jpg");
     
-    Picture negatedFlower1 = new Picture(flower1);
-    negatedFlower1.negate();
-    
-    Picture grayTemple = new Picture(temple);
-    grayTemple.Grayscale();
-    
-    
-    int currentX = 0;
-    int currentY = 0;
-    this.copy(negatedFlower1, currentY, currentX);
-    currentX += negatedFlower1.getWidth();
-    
-    this.copy(flower2, currentY, currentX);
-    currentX += flower2.getWidth();
-    
-    this.copy(caterpillar, currentY, currentX);
-    
-    currentY += negatedFlower1.getHeight();
-    currentX = 0;
-    
-    this.copy(grayTemple, currentY, currentX);
-    currentX += grayTemple.getWidth();
-    
-    this.copy(beach, currentY, currentX);
-    currentX += beach.getWidth();
-    
-    this.copy(seagull, currentY, currentX);
-    
-    this.mirrorVertical();
-    
-    this.write("collage.jpg");
-    
-}
-  
-  
-  /** Method to show large changes in color 
-    * @param edgeDist the distance for finding edges
-    */
-  public void edgeDetection(int edgeDist)
-  {
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
-    Pixel[][] pixels = this.getPixels2D();
-    Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
-    {
-      for (int col = 0; 
-           col < pixels[0].length-1; col++)
-      {
-        leftPixel = pixels[row][col];
-        rightPixel = pixels[row][col+1];
-        rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
-          leftPixel.setColor(Color.BLACK);
-        else
-          leftPixel.setColor(Color.WHITE);
-      }
-    }
   }
   
   
