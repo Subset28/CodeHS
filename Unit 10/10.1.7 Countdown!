@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Countdown
+{
+    public static void main(String[] args)
+    {
+       // Start here
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Enter a starting number: ");
+       int start = scan.nextInt();
+       System.out.println(countdown(start));
+       
+       
+    }
+    
+    public static String countdown(int number)
+    {
+       
+       // Base case - return Blastoff!
+       
+       // Recursive call
+       
+       if(number <= 0)
+       {
+           return "Blastoff!";
+       }
+       else
+       {
+           return number + " " + countdown(number-2);
+       }
+       
+       
+       
+    }
+}
