@@ -1,0 +1,181 @@
+public class Assignment
+{
+    private String name;
+    private String dueDate;
+    private double availablePoints;
+    private double earnedPoints;
+    
+    public Assignment(String name, String dueDate, double availablePoints, double earnedPoints)
+    {
+        this.name = name;
+        this.dueDate = dueDate;
+        this.availablePoints = availablePoints;
+        this.earnedPoints = earnedPoints;
+    }
+    
+    public String getName()
+    {
+        return this.name;
+    }
+    
+    public String getDueDate()
+    {
+        return this.dueDate;
+    }
+    
+    public double getAvailablePoints()
+    {
+        return this.availablePoints;
+    }
+    
+    public double getEarnedPoints()
+    {
+        return this.earnedPoints;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public void setDueDate(String dueDate)
+    {
+        this.dueDate = dueDate;
+    }
+    
+    public void setAvailablePoints(double availablePoints)
+    {
+        this.availablePoints = availablePoints;
+    }
+    
+    
+    public void setEarnedPoints(double earnedPoints)
+    {
+        this.earnedPoints = earnedPoints;
+    }
+    
+    
+}
+
+import java.util.*;
+
+public class AssignmentRunner {
+
+    public static void main(String[] args) {
+
+    Scanner scan = new Scanner(System.in);
+    ArrayList<Assignment> assignments = new ArrayList<>();
+    
+    while(true)
+    {
+        System.out.println("Enter the assignment's name (exit to quit): ");
+        String name = scan.nextLine();
+        if(name.equalsIgnoreCase("exit")) break;
+        
+        System.out.println("Enter the due date: ");
+        String dueDate = scan.nextLine();
+        
+        System.out.println("How many points is the assignment worth? ");
+        double availablePoints = scan.nextDouble();
+        
+        System.out.println("How many points were earned? ");
+        double earnedPoints = scan.nextDouble();
+        
+        scan.nextLine();
+        
+        System.out.println("Is this a (T)est or a (P)roject? ");
+        String type = scan.nextLine();
+        
+        if(type.equalsIgnoreCase("T"))
+        {
+            System.out.println("What type of test is it? ");
+            String testType = scan.nextLine();
+            Test test = new Test(name,dueDate,availablePoints,earnedPoints,testType);
+            assignments.add(test);
+        }
+        else if (type.equalsIgnoreCase("P"))
+        {
+            System.out.println("Does this project require (true/false)...\nGroups ");
+            boolean hasGroups = scan.nextBoolean();
+            System.out.println("A presentation? ");
+            boolean hasPresentation = scan.nextBoolean();
+            scan.nextLine();
+            Project project = new Project(name,dueDate,availablePoints,earnedPoints,hasGroups, hasPresentation);
+            assignments.add(project);
+        }
+    }
+    
+    printSummary(assignments);
+        // Start here
+
+    }
+
+    // Print due date and score percentage on the assignment
+    public static void printSummary(ArrayList<Assignment> assignments) {
+       for(Assignment a : assignments)
+       {
+           double percent = (a.getEarnedPoints() / a.getAvailablePoints()) * 100;
+           System.out.println(a.getName() + " - " + percent);
+       }
+       
+    }
+}
+
+public class Project extends Assignment {
+    
+    
+    private boolean groups;
+    private boolean presentation;
+    
+    public Project(String name, String dueDate, double availablePoints, double earnedPoints, boolean hasGroups, boolean hasPresentation)
+    {
+        super(name,dueDate,availablePoints,earnedPoints);
+        this.groups = hasGroups;
+        this.presentation = hasPresentation;
+    }
+    
+    public boolean hasGroups()
+    {
+        return this.groups;
+    
+    }
+    
+    
+    public boolean hasPresentation()
+    {
+        return this.presentation;
+    }
+    
+    public void setGroups(boolean groups)
+    {
+        this.groups = groups;
+    }
+    
+    public void setPresentation(boolean presentation)
+    {
+        this.presentation = presentation;
+    }
+    
+}
+
+public class Test extends Assignment {
+    
+    private String testType;
+    
+    public Test(String name, String dueDate, double availablePoints, double earnedPoints, String testType)
+    {
+        super(name,dueDate,availablePoints,earnedPoints);
+        this.testType = testType;
+    }
+    
+    public String getTestType()
+    {
+        return this.testType;
+    }
+    
+    public void setTestType(String type)
+    {
+        this.testType = type;
+    }
+    
+}
