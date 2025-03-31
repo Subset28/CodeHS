@@ -1,0 +1,116 @@
+public class Car {
+    
+    // This code is complete
+    private String model;
+    private int fuelLevel;
+    
+    public Car(String model, int fuelLeft){
+        this.model = model;
+        this.fuelLevel = fuelLeft;
+    }
+    
+    public String getModel(){
+        return model;
+    }
+    
+    public double getFuelLevel(){
+        return fuelLevel;
+    }
+    
+    // Returns how many more miles the car can go
+    // with the fuel left
+    public double milesLeft(double mpg){
+        return fuelLevel * mpg;
+    }
+    
+    public String toString(){
+        return model + " car";
+    }
+}
+
+import java.util.*;
+
+public class CarTester
+{
+    public static void main(String[] args)
+    {
+        // Start here
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Car> cars = new ArrayList<Car>();
+        
+        System.out.println("Enter your cars' information: ");
+        
+        while(true)
+        {
+            System.out.println("Model (exit to quit): ");
+            String model = scan.nextLine();
+            
+            if(model.equalsIgnoreCase("exit"))
+            {
+                break;
+            }
+            
+            System.out.println("Electric car (y/n): ");
+            String isElectric = scan.nextLine();
+            
+            if(isElectric.equalsIgnoreCase("y"))
+            {
+                System.out.println("Percent of battery left (as a whole number): ");
+                int batteryPercent = scan.nextInt();
+                scan.nextLine();
+                cars.add(new ElectricCar(model,batteryPercent));
+                
+            }
+            else
+            {
+                System.out.println("Gallons of fuel left: ");
+                int fuel = scan.nextInt();
+                scan.nextLine();
+                cars.add(new Car(model,fuel));
+            }
+        }
+        
+        System.out.println();
+        for(Car c: cars)
+        {
+            System.out.println(c);
+        }
+        
+    }
+}
+
+public class ElectricCar extends Car {
+
+    // Complete the constructor
+    // Note we're reinterpreting "fuelLevel" as "batteryLevel"
+    public ElectricCar(String model, int batteryLevel){
+       super(model, batteryLevel);
+    }
+
+    // Override getFuelLevel
+    // Reinterprets fuelLevel() as a percentage
+    // Remember super.getFuelLevel will return fuelLevel!
+    @Override
+    public double getFuelLevel()
+    {
+        return super.getFuelLevel()/100.0;
+    }
+    
+
+    // Override milesLeft
+    // Takes one parameter - the total number of miles an ElectricCar
+    // gets on a full charge.
+    // Computes miles left by interpreting fuelLevel as the
+    // battery percentage left in the car
+    public double milesLeft(double miles)
+    {
+        return miles * (super.getFuelLevel()/100.0);
+    }
+    
+    // Override toString
+    // Should print: model electric car
+    public String toString()
+    {
+        return getModel() + " electric car";
+    }
+}
