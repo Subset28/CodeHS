@@ -1,0 +1,90 @@
+public class Ball
+{
+   private double diameter;
+   
+   public Ball(double diameter){
+       this.diameter = diameter;
+   }
+   
+    public double getDiameter(){
+       return diameter;
+   }
+   
+   public String toString()
+   {
+       return "Diameter: " + this.diameter;
+   }
+   
+   public boolean equals(Ball other)
+   {
+       return this.diameter == other.diameter;
+   }
+   
+   // Write an equals method here that returns true if
+   // the diameters are the same.
+   
+   // Write a toString statement here, in this format:
+   // Diameter: 2.75
+   
+   
+}
+
+public class TestEquals
+{
+    public static void main(String[] args)
+    {
+        System.out.println("** Object **");
+        Object first = new Object();
+        Object second = first;
+        Object third = new Object();
+        
+        // Print out all three objects
+        System.out.println("First: " + first);
+        System.out.println("Second: " + second);
+        System.out.println("Third: " + third);
+        
+        System.out.println("first == second: " + (first == second));
+        
+        
+        // Print a true statement using 2 objects and ==
+        System.out.println("first == third: " + (first == third));
+        
+        // Print a false statement using 2 objects and ==
+        System.out.println("first.equals(second: " + first.equals(second));
+        
+        // Print a true statement using 2 objects and .equals()
+        System.out.println("first.equals(third: " + first.equals(third));
+        
+        // Print a false statement using 2 objects and .equals()
+
+        
+        System.out.println("** Ball **");
+        
+        
+        Ball golfball = new Ball(1.5);
+        Ball minigolf = golfball;
+        Ball largeGolf = new Ball(1.5);
+        
+        // Print out all three objects
+        System.out.println("Golfball: " + golfball);
+        System.out.println("Minigolf: " + minigolf);
+        System.out.println("LargeGolf: " + largeGolf);
+        
+         // Print a true statement using 2 objects and ==
+
+        System.out.println("golfball == minigolf: " + (golfball == minigolf));
+        
+        
+        // Print a false statement using 2 objects and ==
+        System.out.println("golfball == largeGolf: " + (golfball == largeGolf));
+        
+        // Print a true statement using 2 objects and .equals()
+        System.out.println("golfballl.equals(minigolf): " + golfball.equals(minigolf));
+        
+        System.out.println("golfball.equals(largestGolf): " + golfball.equals(largeGolf)); 
+        
+        // Print a false statement using 2 objects and .equals()
+
+
+    }
+}
