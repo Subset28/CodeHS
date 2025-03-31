@@ -1,0 +1,149 @@
+public class Book
+{
+
+    // Start here!
+    private String title;
+    private String author;
+    public Book(String title, String author)
+    {
+        this.title = title;
+        this.author = author;
+    }
+    
+    public String toString()
+    {
+        return "Book: " + title;
+    }
+    
+    
+    public String getTitle()
+    {
+        return this.title;
+    }
+    
+    public String getAuthor()
+    {
+        return author;
+    }
+    
+    public void setAuthor(String author)
+    {
+        this.author = author;
+    }
+    
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+}
+
+import java.util.ArrayList;
+
+public class BookTester
+{
+    public static void main(String[] args)
+    {
+        // Start here!
+        ArrayList<Book> library = new ArrayList<>();
+        
+        library.add(new TextBook("Intro to java", "dinosaur", 6, true));
+        library.add(new TextBook("Ap BIo", "bob", 12, false));
+        library.add(new TextBook("How to code", "deltamath", 4, true));
+        
+        library.add(new Novel("The hobbit", "tolkein", 8, "Fantasy"));
+        library.add(new Novel("Pride and Prejudice", "austen", 10, "romance"));
+        library.add(new Novel("1984", "orwell", 9, "Dystopian"));
+        
+        for(Book b: library)
+        {
+            System.out.println(b);
+            System.out.println("Title: " + b.getTitle());
+            System.out.println("Author: " + b.getAuthor());
+            System.out.println();
+        }
+    }
+}
+
+public class Novel extends Book
+{
+    
+    // Start here!
+    private int readingLevel;
+    private String genre;
+    public Novel(String title, String author, int readingLevel, String genre)    
+    {
+        super(title,author);
+        this.readingLevel = readingLevel;
+        this.genre = genre;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return genre + " Novel";
+    }
+    
+    public String getGenre()
+    {
+        return genre;
+    }
+    
+    public int getReadingLevel()
+    {
+        return readingLevel;
+    }
+    
+    public void setReadingLevel(int reading)
+    {
+        readingLevel = reading;
+    }
+    
+    public void setGenre(String genre)
+    {
+        this.genre = genre;
+    }
+}
+
+public class TextBook extends Book
+{
+
+    // Start here!
+    private int edition;
+    private boolean Ebook;
+    
+    public TextBook(String title, String author, int edition, boolean isEbook)
+    {
+        super(title,author);
+        this.edition = edition;
+        this.Ebook = isEbook;
+    }
+    
+    public boolean isEbook()
+    {
+        return Ebook;
+    }
+    
+    public void setEbook(boolean ebook)
+    {
+        this.Ebook = ebook;
+    }
+    
+    public int getEdition()
+    {
+        return edition;
+    }
+    
+    public void setEdition(int edition)
+    {
+        this.edition = edition;
+    }
+    
+    
+    @Override
+    public String toString()
+    {
+        return "Textbook edition # " + this.edition;
+    }
+
+
+}
